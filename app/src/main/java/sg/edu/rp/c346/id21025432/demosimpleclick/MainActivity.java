@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn2;
+    TextView tvDisplay;
+    Button btnDisplay;
+    EditText etInput;
 
 
     @Override
@@ -17,12 +21,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btn2 = findViewById(R.id.btn1);
-        btn2.setOnClickListener(new View.OnClickListener() {
+        tvDisplay = findViewById(R.id.textViewDisplay);
+        btnDisplay = findViewById(R.id.btn1);
+        etInput = findViewById(R.id.editTextTextPersonName);
+
+        btnDisplay.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Button was clicked", Toast.LENGTH_LONG).show();
+            public void onClick(View v) {
+                // Code for the action
+                etInput.getText().toString();
+                String stringResponse = etInput.getText().toString();
+                tvDisplay.setText(stringResponse);
+
             }
         });
+
+
     }
 }
