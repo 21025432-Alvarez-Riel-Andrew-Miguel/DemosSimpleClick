@@ -8,13 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView tvDisplay;
     Button btnDisplay;
     EditText etInput;
-
+    ToggleButton tbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         tvDisplay = findViewById(R.id.textViewDisplay);
         btnDisplay = findViewById(R.id.btn1);
         etInput = findViewById(R.id.editTextTextPersonName);
+        tbtn = findViewById(R.id.toggleButtonEnabled);
 
         btnDisplay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +37,25 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        tbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Add your code for the action
+                etInput.setEnabled(false);
+                tvDisplay.setEnabled(false);
+                btnDisplay.setEnabled(false);
+
+                if(tbtn.isChecked()){
+                    etInput.setEnabled(true);
+                    tvDisplay.setEnabled(true);
+                    btnDisplay.setEnabled(true);
+                }
+            }
+        });
+
+
+
 
 
     }
