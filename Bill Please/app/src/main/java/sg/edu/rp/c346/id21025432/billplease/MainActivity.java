@@ -46,17 +46,41 @@ public class MainActivity extends AppCompatActivity {
         split.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Integer initCost = Integer.parseInt(amount.getText().toString());
-                Integer people = Integer.parseInt(NumPax.getText().toString())
+                Double initCost = Double.parseDouble(amount.getText().toString());
+                Double people = Double.parseDouble(NumPax.getText().toString());
+                Double disc = Double.parseDouble(discount.getText().toString());
+                Double finalCost = initCost;
+                String eachCost = String.format("%.2f",finalCost/people);
+
                 if (SVS.isChecked() && GST.isChecked()){
-                    Integer finalCost = (initCost + initCost/10 +(initCost/100)*7)/people;
+                    finalCost = (initCost + initCost/10 +(initCost/100)*7)-(initCost/100*disc);
+                    eachCost = String.format("%.2f",finalCost/people);
                 } else if (SVS.isChecked()){
-                    Integer finalCost = (initCost + initCost/10)/people;
+                    finalCost = (initCost + initCost/10)-(initCost/100*disc);
+                    eachCost = String.format("%.2f",finalCost/people);
                 } else if (GST.isChecked()){
-                    Integer finalCost = (initCost +(initCost/100)*7)/people;
+                    finalCost = (initCost +(initCost/100)*7)-(initCost/100*disc);
+                    eachCost = String.format("%.2f",finalCost/people);
+                } else {
+                    finalCost = (initCost-(initCost/100*disc));
+                    eachCost = String.format("%.2f",finalCost/people);
                 }
 
+                total.setText("Total Bill: $" + finalCost.toString());
+                eachpay.setText("Each Pays: $" + eachCost.toString());
+            }
+        });
 
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                amount.setText("");
+                NumPax.setText("");
+                discount.setText("");
+                total.setText("Total Bill: ");
+                eachpay.setText("Each Pays: ");
+                SVS.setChecked(false);
+                GST.setChecked(false);
             }
         });
     }
