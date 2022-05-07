@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        discount.setText("0");
         amount  = findViewById(R.id.amount);
         NumPax  = findViewById(R.id.NumPax);
         SVS  = findViewById(R.id.noSVSButton);
@@ -67,7 +68,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 total.setText("Total Bill: $" + finalCost.toString());
-                eachpay.setText("Each Pays: $" + eachCost.toString());
+                if (payNow.isChecked()){
+                    eachpay.setText("Each Pays: $" + eachCost.toString() + " via PayNow to 912345678");
+                } else {
+                    eachpay.setText("Each Pays: $" + eachCost.toString());
+                }
+
             }
         });
 
@@ -76,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 amount.setText("");
                 NumPax.setText("");
-                discount.setText("");
+                discount.setText("0");
                 total.setText("Total Bill: ");
                 eachpay.setText("Each Pays: ");
                 SVS.setChecked(false);
