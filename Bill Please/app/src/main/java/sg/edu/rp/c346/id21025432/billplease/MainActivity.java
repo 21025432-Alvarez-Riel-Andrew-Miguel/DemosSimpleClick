@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        discount.setText("0");
+
         amount  = findViewById(R.id.amount);
         NumPax  = findViewById(R.id.NumPax);
         SVS  = findViewById(R.id.noSVSButton);
@@ -42,11 +42,12 @@ public class MainActivity extends AppCompatActivity {
         reset  = findViewById(R.id.resetButton);
         total  = findViewById(R.id.totalBill);
         eachpay  = findViewById(R.id.eachPays);
-
+        discount.setText("0");
 
         split.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Double initCost = Double.parseDouble(amount.getText().toString());
                 Double people = Double.parseDouble(NumPax.getText().toString());
                 Double disc = Double.parseDouble(discount.getText().toString());
